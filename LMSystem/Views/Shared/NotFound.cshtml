@@ -1,0 +1,2 @@
+@{ ViewData["Title"]="Resource Not Found"; }
+<div class="message-page"><i class="bi bi-search"></i><h1>Resource Not Found</h1><p>@(TempData["ErrorMessage"] ?? "The requested record could not be found.")</p><a asp-controller="Dashboard" asp-action="Index" class="btn btn-dark">Back to Dashboard</a></div>

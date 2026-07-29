@@ -1,0 +1,2 @@
+@{ ViewData["Title"]="Not Available"; }
+<div class="message-page"><i class="bi bi-bookmark-x"></i><h1>Book Not Available</h1><p>@(TempData["ErrorMessage"] ?? "This book is currently checked out.")</p><a asp-controller="Books" asp-action="Index" class="btn btn-dark">Back to Catalog</a></div>

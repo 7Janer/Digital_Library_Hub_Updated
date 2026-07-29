@@ -1,0 +1,49 @@
+@model List<UserAdminViewModel>
+@{
+    ViewData["Title"] = "Users and Roles";
+    var roles = ViewBag.Roles as List<string> ?? new();
+}
+<div class="page-title-row">
+    <div><span class="eyebrow">IDENTITY ADMINISTRATION</span><h1>Users & Roles</h1><p>Manage Administrator, Librarian and Member access.</p></div>
+</div>
+<section class="content-panel">
+    <div class="list-toolbar">
+        <form method="get" class="search-box"><i class="bi bi-search"></i><input name="searchTerm" value="@ViewBag.SearchTerm" placeholder="Search user, email or name"/><button>Search</button></form>
+        <span class="record-count">@Model.Count users</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table hub-table mb-0">
+            <thead><tr><th>User</th><th>Email</th><th>Joined</th><th>Current Role</th><th>Assign Role</th></tr></thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.User.FullName</strong><small>@item.User.UserName</small></td>
+                    <td>@item.User.Email</td>
+                    <td>@item.User.JoinedOn.ToLocalTime().ToString("dd MMM yyyy")</td>
+                    <td><span class="type-chip">@item.Role</span></td>
+                    <td>
+                        <form asp-action="AssignRole" method="post" class="role-form">
+                            <input type="hidden" name="userId" value="@item.User.Id"/>
+                            <select name="role" class="form-select form-select-sm">
+                                @foreach (var role in roles)
+                                {
+                                    if (role == item.Role)
+                                    {
+                                        <option value="@role" selected>@role</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@role">@role</option>
+                                    }
+                                }
+                            </select>
+                            <button class="btn btn-sm btn-dark">Save</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

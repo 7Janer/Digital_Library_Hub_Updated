@@ -1,0 +1,3 @@
+@model Publication
+@{ ViewData["Title"]="Delete Publication"; }
+<div class="form-shell"><div class="form-card danger-card"><div class="form-header danger"><i class="bi bi-exclamation-triangle"></i><div><span>DESTRUCTIVE ACTION</span><h1>Delete @Model.Type</h1></div></div><div class="form-body"><div class="delete-warning"><strong>Delete “@Model.Title”?</strong><p>This issue will be removed from the periodicals catalog.</p></div><form asp-action="Delete" method="post" class="form-actions"><input type="hidden" asp-for="Id"/><a asp-action="Index" asp-route-type="@Model.Type" class="btn btn-outline-secondary">Cancel</a><button class="btn btn-danger">Delete</button></form></div></div></div>

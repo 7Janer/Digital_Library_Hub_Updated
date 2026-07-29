@@ -1,0 +1,19 @@
+digraph DigitalLibraryHub {
+  graph [rankdir=LR, bgcolor="white", pad="0.35", nodesep="0.55", ranksep="0.8", fontname="Arial"];
+  node [shape=record, style="rounded,filled", fillcolor="#f7f9fa", color="#46545e", fontname="Arial", fontsize=10];
+  edge [color="#65737d", arrowsize=0.7, fontname="Arial", fontsize=9];
+
+  Books [label="{Books13|BookId PK\lTitle\lAuthor\lISBN\lPublisher\lCategory\lPublishedDate\lIsAvailable\l}", fillcolor="#e8f1ff"];
+  Borrow [label="{BorrowRecords13|BorrowRecordId PK\lBookId FK\lBorrowerName\lBorrowerEmail\lPhone\lBorrowDate\lDueDate\lReturnDate\l}", fillcolor="#fff0e8"];
+  Students [label="{Students|StudentId PK\lStudent_Name\lEmail\lPhone_Number\l}", fillcolor="#e9f7ee"];
+  Librarians [label="{Librarians|LibrarianId PK\lName\lAge\lPhone\l}", fillcolor="#fff7d8"];
+  Publications [label="{Publications|Id PK\lTitle\lPublisher\lPublishedDate\lType\lIsAvailable\l}", fillcolor="#f1eaff"];
+  Contact [label="{ContactMessages|ContactMessageId PK\lName\lEmail\lMessage\lSubmittedAt\lIsResolved\l}", fillcolor="#fcecef"];
+  Users [label="{AspNetUsers|Id PK\lUserName\lEmail\lPasswordHash\lFullName\lJoinedOn\l}", fillcolor="#e9eef2"];
+  Roles [label="{AspNetRoles|Id PK\lName\lNormalizedName\l}", fillcolor="#e9eef2"];
+  UserRoles [label="{AspNetUserRoles|UserId PK/FK\lRoleId PK/FK\l}", fillcolor="#e9eef2"];
+
+  Books -> Borrow [label="1 to many"];
+  Users -> UserRoles [label="1 to many"];
+  Roles -> UserRoles [label="1 to many"];
+}

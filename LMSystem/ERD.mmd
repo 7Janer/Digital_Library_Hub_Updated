@@ -1,0 +1,51 @@
+erDiagram
+    BOOKS13 ||--o{ BORROWRECORDS13 : has
+    ASPNETUSERS ||--o{ ASPNETUSERROLES : assigned
+    ASPNETROLES ||--o{ ASPNETUSERROLES : contains
+    BOOKS13 {
+      int BookId PK
+      string Title
+      string Author
+      string ISBN
+      string Publisher
+      string Category
+      datetime PublishedDate
+      bool IsAvailable
+    }
+    BORROWRECORDS13 {
+      int BorrowRecordId PK
+      int BookId FK
+      string BorrowerName
+      string BorrowerEmail
+      datetime BorrowDate
+      datetime DueDate
+      datetime ReturnDate
+    }
+    STUDENTS {
+      int StudentId PK
+      string Student_Name
+      string Email
+      string Phone_Number
+    }
+    LIBRARIANS {
+      int LibrarianId PK
+      string Name
+      int Age
+      string Phone
+    }
+    PUBLICATIONS {
+      int Id PK
+      string Title
+      string Publisher
+      datetime PublishedDate
+      int Type
+      bool IsAvailable
+    }
+    CONTACTMESSAGES {
+      int ContactMessageId PK
+      string Name
+      string Email
+      string Message
+      datetime SubmittedAt
+      bool IsResolved
+    }

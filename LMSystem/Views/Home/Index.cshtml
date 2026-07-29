@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Home";
+    var featured = ViewBag.FeaturedBooks as List<Book> ?? new();
+}
+<section class="hero-panel text-center">
+    <div class="hero-kicker">SMART COLLECTION MANAGEMENT</div>
+    <h1>Digital Library Hub System</h1>
+    <p>Your central platform for collection control, member services and transaction tracking.</p>
+    <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <a class="btn btn-dark px-4" asp-controller="Dashboard" asp-action="Index">Open Dashboard</a>
+            <a class="btn btn-outline-dark px-4" asp-controller="Books" asp-action="Index">Browse Catalog</a>
+        }
+        else
+        {
+            <a class="btn btn-dark px-4" asp-controller="Account" asp-action="Login">Sign In</a>
+            <a class="btn btn-outline-dark px-4" asp-controller="Account" asp-action="Register">Create Member Account</a>
+        }
+    </div>
+</section>
+
+<div class="row g-4 home-metrics">
+    <div class="col-md-4"><div class="mini-metric"><i class="bi bi-book-half"></i><div><strong>@ViewBag.TotalBooks</strong><span>Books in catalog</span></div></div></div>
+    <div class="col-md-4"><div class="mini-metric"><i class="bi bi-people"></i><div><strong>@ViewBag.TotalMembers</strong><span>Student records</span></div></div></div>
+    <div class="col-md-4"><div class="mini-metric"><i class="bi bi-newspaper"></i><div><strong>@ViewBag.TotalPublications</strong><span>Magazines & newspapers</span></div></div></div>
+</div>
+
+<section class="section-block">
+    <div class="section-heading"><div><span>CURATED PICKS</span><h2>Featured Books</h2></div><a asp-controller="Books" asp-action="Index">View full catalog <i class="bi bi-arrow-right"></i></a></div>
+    <div class="row g-4">
+        @foreach (var book in featured)
+        {
+            <div class="col-md-4">
+                <article class="feature-book-card">
+                    <div class="book-spine"><i class="bi bi-book"></i><small>@book.Category</small></div>
+                    <div class="p-4"><h3>@book.Title</h3><p class="text-muted mb-2">@book.Author</p><div class="small text-secondary mb-3">@book.Publisher · @book.PublishedDate.Year</div><a class="btn btn-sm btn-outline-dark" asp-controller="Books" asp-action="Details" asp-route-id="@book.BookId">View Details</a></div>
+                </article>
+            </div>
+        }
+    </div>
+</section>
+<section class="announcement-strip"><i class="bi bi-megaphone"></i><div><strong>Library announcement</strong><span>New periodicals and technology titles are now available. Public holidays may affect service hours.</span></div></section>

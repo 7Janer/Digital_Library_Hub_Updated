@@ -1,0 +1,3 @@
+@model ReturnViewModel
+@{ ViewData["Title"]="Return Book"; }
+<div class="form-shell"><div class="form-card"><div class="form-header green"><i class="bi bi-journal-check"></i><div><span>RETURN TRANSACTION</span><h1>Return Book</h1></div></div><div class="form-body"><dl class="detail-grid compact"><div><dt>Book</dt><dd>@Model.BookTitle</dd></div><div><dt>Borrower</dt><dd>@Model.BorrowerName</dd></div><div><dt>Borrowed On</dt><dd>@Model.BorrowDate?.ToLocalTime().ToString("dd MMM yyyy")</dd></div></dl><form asp-action="Return" method="post" class="form-actions"><input type="hidden" asp-for="BorrowRecordId"/><a asp-action="Index" class="btn btn-outline-secondary">Cancel</a><button class="btn btn-success">Confirm Return</button></form></div></div></div>

@@ -1,0 +1,2 @@
+@{ ViewData["Title"]="Already Returned"; }
+<div class="message-page"><i class="bi bi-check2-circle"></i><h1>Already Returned</h1><p>@(TempData["ErrorMessage"] ?? "This transaction has already been completed.")</p><a asp-controller="Borrow" asp-action="Index" class="btn btn-dark">Back to Records</a></div>
